@@ -1,5 +1,8 @@
 package com.cs4520.assignment1
 
+//define a class for the data
+data class Product(val name: String, val category: String, val expiryDate: String?, val price: Int)
+
 val productsDataset = listOf(
     listOf("Treadmill", "Equipment", null, 32),
     listOf("Banana", "Food", "2024-02-29", 29),

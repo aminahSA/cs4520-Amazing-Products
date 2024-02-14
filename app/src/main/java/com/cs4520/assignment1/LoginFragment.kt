@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class LoginFragment : Fragment(R.layout.login_fragment) {
 
@@ -38,22 +39,20 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         val password = password.text.toString()
 
         if (username == "admin" && password == "admin") {
+            //clear the fields before navigation
+
             // Navigate to ProductListFragment
-            // Here, you need to replace 'R.id.fragment_container' with the id of the container where you want to replace fragments
-            println("do something")
+            findNavController().navigate(R.id.action_loginFragment_to_productListFragment)
         } else {
             // Display a toast message indicating incorrect username or password
-            Toast.makeText(context, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+            val text = "Incorrect username or password."
+            val duration = Toast.LENGTH_SHORT
+            // Use runOnUiThread to display the toast on the main UI thread
+            activity?.runOnUiThread {
+                val toast = Toast.makeText(requireContext(), text, duration)
+                toast.show()
+            }
         }
     }
 
 }
-
-//When the user opens the app every time, they see a LoginFragment.
-
-//LoginFragment
-
-//Clicking the Login button should navigate to the ProductListFragment,
-// only if the username and password matches "admin" and "admin" respectively.
-// If the username or password differs, display a toast message. Make sure to clear
-// the fields before navigation. -->
